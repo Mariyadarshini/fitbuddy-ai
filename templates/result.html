@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Your FitBuddy Plan{% endblock %}
+{% block content %}
+<section class="page-head">
+  <div><p class="eyebrow">PERSONALIZED PLAN</p><h1>{{ user.name }}'s 7-day fitness plan</h1></div>
+  <a class="secondary" href="/">New plan</a>
+</section>
+
+{% if message %}<div class="success">{{ message }}</div>{% endif %}
+<div class="notice">Generation mode: <strong>{{ generation_mode }}</strong> · Model: <strong>{{ model }}</strong></div>
+
+<section class="card profile">
+  <h2>User information</h2>
+  <div class="profile-grid">
+    <div><span>Name</span><b>{{ user.name }}</b></div><div><span>User ID</span><b>{{ user.id }}</b></div>
+    <div><span>Age</span><b>{{ user.age }}</b></div><div><span>Weight</span><b>{{ user.weight }} kg</b></div>
+    <div><span>Goal</span><b>{{ user.goal }}</b></div><div><span>Intensity</span><b>{{ user.intensity|capitalize }}</b></div>
+  </div>
+</section>
+
+<section class="card">
+  <h2>Workout plan</h2>
+  <p>{{ plan.summary }}</p>
+  <div class="days">
+    {% for day in plan.days %}
+    <article class="day">
+      <div class="day-title"><span>{{ day.day }}</span><h3>{{ day.focus }}</h3></div>
+      <div class="day-cols">
+        <div><h4>Warm-up</h4><ul>{% for item in day.warm_up %}<li>{{ item }}</li>{% endfor %}</ul></div>
+        <div><h4>Workout</h4><ul>{% for item in day.workout %}<li>{{ item }}</li>{% endfor %}</ul></div>
+        <div><h4>Cooldown</h4><ul>{% for item in day.cooldown %}<li>{{ item }}</li>{% endfor %}</ul></div>
+      </div>
+      <p class="recovery"><strong>Recovery:</strong> {{ day.recovery_tip }}</p>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="card tip"><h2>Nutrition / recovery tip</h2><p>{{ nutrition_tip }}</p></section>
+
+<section class="card">
+  <h2>Share your feedback</h2>
+  <p>Ask for changes such as more cardio, less volume, an extra rest day, or a stronger mobility focus.</p>
+  <form action="/submit-feedback" method="post">
+    <input type="hidden" name="user_id" value="{{ user.id }}">
+    <textarea name="feedback" required minlength="3" maxlength="2000" placeholder="e.g. Add more cardio and make Day 4 lighter..."></textarea>
+    <button type="submit">Update My Plan →</button>
+  </form>
+</section>
+{% endblock %}

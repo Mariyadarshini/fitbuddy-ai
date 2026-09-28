@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}FitBuddy – All Users{% endblock %}
+{% block content %}
+<section class="page-head"><div><p class="eyebrow">ADMIN VIEW</p><h1>All users & workout plans</h1></div><a class="secondary" href="/">Back</a></section>
+{% if not users %}<div class="card"><p>No users have been created yet.</p></div>{% endif %}
+{% for user in users %}
+<section class="card admin-user">
+  <div class="admin-head"><div><h2>{{ user.name }}</h2><p>User #{{ user.id }} · {{ user.age }} years · {{ user.weight }} kg</p></div><span class="pill">{{ user.intensity|capitalize }}</span></div>
+  <p><strong>Goal:</strong> {{ user.goal }}</p>
+  <details><summary>Original plan</summary><pre>{{ user.original_plan or 'N/A' }}</pre></details>
+  <details><summary>Updated plan</summary><pre>{{ user.updated_plan or 'Not updated' }}</pre></details>
+  {% if user.nutrition_tip %}<p><strong>Tip:</strong> {{ user.nutrition_tip }}</p>{% endif %}
+</section>
+{% endfor %}
+{% endblock %}
