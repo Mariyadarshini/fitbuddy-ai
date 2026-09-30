@@ -1,0 +1,17 @@
+ALGORITHM
+
+1. Start the FitBuddy AI web application (uvicorn app.main:app --reload); the SQLite database and tables are created at startup.
+2. Display the Home page with the planner form.
+3. Collect the user's name, user ID, age, weight, fitness goal and workout intensity (low, medium or high).
+4. Validate the input values (age 13-100, weight 20-400 kg, goal and name not empty, intensity low/medium/high). If validation fails, show the error page.
+5. Check whether the Gemini API key is configured and the service is available.
+6. If Gemini is available, send a prompt and receive a structured 7-day workout plan. If Gemini is unavailable or fails, use the local fallback generator (when fallback is enabled).
+7. Validate that the plan contains exactly 7 days with warm-up, workout, cooldown and recovery tip for each day.
+8. Generate a short nutrition or recovery tip based on the user's goal (Gemini or fallback).
+9. Save or update the user profile and store the original plan and nutrition tip in the SQLite database.
+10. Display the 7-day plan, user information and nutrition tip on the result page.
+11. If the user submits feedback, retrieve the stored plan, send the plan and feedback to the AI service (or fallback), and store the updated plan.
+12. Display the updated plan with the message "Your plan has been updated based on your feedback!".
+13. Allow the admin or coach to open the Users page (/view-all-users) to see all users with their original and updated plans.
+14. Allow access to the Swagger API documentation at /docs at any time.
+15. End when the user closes the application.

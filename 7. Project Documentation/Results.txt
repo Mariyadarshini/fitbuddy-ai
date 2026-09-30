@@ -1,0 +1,16 @@
+RESULTS
+
+The FitBuddy AI application provides a functional web interface for AI-based fitness planning.
+
+1. The application opens on the Home page with the planner form.
+2. The user enters name, user ID, age, weight, fitness goal and workout intensity.
+3. The application generates a 7-day plan; each day contains warm-up, workout, cooldown and a recovery tip.
+4. A short nutrition or recovery tip is shown with the plan.
+5. Users and generated plans are stored in the SQLite database.
+6. The user can submit feedback (for example, more cardio or an extra rest day) and the plan is updated.
+7. A confirmation message "Your plan has been updated based on your feedback!" is displayed after the update.
+8. The Users page lists all users with their original and updated plans.
+9. If Gemini is unavailable or no API key is set, the fallback generator keeps the application working.
+10. JSON API endpoints and Swagger documentation (/docs) are available.
+11. The 5 automated pytest tests passed (100%) in the local run.
+12. The interface includes a general wellness note that the content is not medical advice.

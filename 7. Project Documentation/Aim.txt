@@ -1,0 +1,3 @@
+AIM
+
+To develop FitBuddy AI, an AI-powered fitness planning web application that allows users to enter their name, age, weight, fitness goal and preferred workout intensity, generates a personalized 7-day workout plan with a nutrition or recovery tip using Google Gemini, lets users submit feedback to update the plan, and stores user profiles and plans in a SQLite database for viewing in an admin page.
